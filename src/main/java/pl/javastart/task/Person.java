@@ -8,15 +8,9 @@ public class Person {
     private String pesel;
 
     public Person(String firstName, String lastName, int age, String pesel) {
-
-        if (firstName == null || lastName == null || firstName.length() < 2 || lastName.length() < 2) {
-            throw new NameUndefinedException();
-        }
-
-        if (age < 1) {
-            throw new IncorrectAgeException();
-        }
-
+        validateFirstName(firstName);
+        validateLastName(lastName);
+        validateAge(age);
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -28,10 +22,14 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
+        validateFirstName(firstName);
+        this.firstName = firstName;
+    }
+
+    private void validateFirstName(String firstName) {
         if (firstName == null || firstName.length() < 2) {
             throw new NameUndefinedException();
         }
-        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -39,10 +37,14 @@ public class Person {
     }
 
     public void setLastName(String lastName) {
+        validateLastName(lastName);
+        this.lastName = lastName;
+    }
+
+    private void validateLastName(String lastName) {
         if (lastName == null || lastName.length() < 2) {
             throw new NameUndefinedException();
         }
-        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -50,10 +52,14 @@ public class Person {
     }
 
     public void setAge(int age) {
+        validateAge(age);
+        this.age = age;
+    }
+
+    private void validateAge(int age) {
         if (age < 1) {
             throw new IncorrectAgeException();
         }
-        this.age = age;
     }
 
     public String getPesel() {
